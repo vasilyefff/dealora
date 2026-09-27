@@ -90,70 +90,70 @@ export const DashboardPage = () => {
         />
       </div>
 
-      <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-        <h2 className="text-base font-semibold text-slate-900">
-          Deals by Stage
-        </h2>
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[1.2fr_1fr_1fr]">
+        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+          <h2 className="text-base font-semibold text-slate-900">
+            Deals by Stage
+          </h2>
 
-        <div className="mt-4 space-y-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-violet-500" />
-              <span className="text-sm text-slate-600">Lead</span>
+          <div className="mt-4 space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-violet-500" />
+                <span className="text-sm text-slate-600">Lead</span>
+              </div>
+
+              <span className="text-sm font-semibold text-slate-900">
+                {dealsByStage.lead}
+              </span>
             </div>
 
-            <span className="text-sm font-semibold text-slate-900">
-              {dealsByStage.lead}
-            </span>
-          </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-blue-500" />
+                <span className="text-sm text-slate-600">Proposal</span>
+              </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-blue-500" />
-              <span className="text-sm text-slate-600">Proposal</span>
+              <span className="text-sm font-semibold text-slate-900">
+                {dealsByStage.proposal}
+              </span>
             </div>
 
-            <span className="text-sm font-semibold text-slate-900">
-              {dealsByStage.proposal}
-            </span>
-          </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-amber-500" />
+                <span className="text-sm text-slate-600">Negotiation</span>
+              </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-amber-500" />
-              <span className="text-sm text-slate-600">Negotiation</span>
+              <span className="text-sm font-semibold text-slate-900">
+                {dealsByStage.negotiation}
+              </span>
             </div>
 
-            <span className="text-sm font-semibold text-slate-900">
-              {dealsByStage.negotiation}
-            </span>
-          </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
+                <span className="text-sm text-slate-600">Won</span>
+              </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-              <span className="text-sm text-slate-600">Won</span>
+              <span className="text-sm font-semibold text-slate-900">
+                {dealsByStage.won}
+              </span>
             </div>
 
-            <span className="text-sm font-semibold text-slate-900">
-              {dealsByStage.won}
-            </span>
-          </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-red-500" />
+                <span className="text-sm text-slate-600">Lost</span>
+              </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-red-500" />
-              <span className="text-sm text-slate-600">Lost</span>
+              <span className="text-sm font-semibold text-slate-900">
+                {dealsByStage.lost}
+              </span>
             </div>
-
-            <span className="text-sm font-semibold text-slate-900">
-              {dealsByStage.lost}
-            </span>
           </div>
         </div>
-      </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="text-base font-semibold text-slate-900">
             Latest Deals
@@ -197,7 +197,7 @@ export const DashboardPage = () => {
           {leadClients.length === 0 ? (
             <p className="mt-4 text-sm text-slate-500">No lead clients yet</p>
           ) : (
-            <ul className="mt-4 divide-y divide-slate-100">
+            <ul className="mt-4 max-h-[320px] divide-y divide-slate-100 overflow-y-auto pr-1">
               {leadClients.map((client) => (
                 <li
                   key={client.id}
