@@ -14,18 +14,18 @@ export const AppLayout = () => {
         />
       )}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white p-6 transition-transform duration-200 md:static md:z-auto md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 border-r border-slate-300 bg-slate-50 p-6 shadow-sm transition-transform duration-200 md:static md:z-auto md:translate-x-0 ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <button
           type="button"
           onClick={() => setIsSidebarOpen(false)}
-          className="mb-4 flex h-9 w-9 items-center justify-center rounded-lg text-2xl text-slate-600 hover:bg-slate-100 md:hidden"
+          className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg text-3xl leading-none text-slate-600 hover:bg-slate-100 md:hidden"
         >
           ×
         </button>
-        <header className="mb-6 text-sm font-bold md:mb-8 md:text-xl">
+        <header className="mb-6 text-xl font-bold md:mb-8 md:text-xl">
           Dealora
         </header>
         <nav className="flex flex-col gap-2">
@@ -34,8 +34,8 @@ export const AppLayout = () => {
             onClick={() => setIsSidebarOpen(false)}
             className={({ isActive }) =>
               isActive
-                ? 'rounded-lg bg-blue-50 px-3 py-2 font-semibold text-blue-600'
-                : 'rounded-lg px-3 py-2 text-gray-700 hover:bg-gray-100'
+                ? 'rounded-lg bg-blue-50 px-3 py-2 text-lg font-semibold text-blue-600 md:text-base'
+                : 'rounded-lg px-3 py-2 text-lg text-gray-700 hover:bg-gray-100 md:text-base'
             }
           >
             Dashboard
@@ -45,8 +45,8 @@ export const AppLayout = () => {
             onClick={() => setIsSidebarOpen(false)}
             className={({ isActive }) =>
               isActive
-                ? 'rounded-lg bg-blue-50 px-3 py-2 font-semibold text-blue-600'
-                : 'rounded-lg px-3 py-2 text-gray-700 hover:bg-gray-100'
+                ? 'rounded-lg bg-blue-50 px-3 py-2 text-lg font-semibold text-blue-600 md:text-base'
+                : 'rounded-lg px-3 py-2 text-lg text-gray-700 hover:bg-gray-100 md:text-base'
             }
           >
             Clients
@@ -56,8 +56,8 @@ export const AppLayout = () => {
             onClick={() => setIsSidebarOpen(false)}
             className={({ isActive }) =>
               isActive
-                ? 'rounded-lg bg-blue-50 px-3 py-2 font-semibold text-blue-600'
-                : 'rounded-lg px-3 py-2 text-gray-700 hover:bg-gray-100'
+                ? 'rounded-lg bg-blue-50 px-3 py-2 text-lg font-semibold text-blue-600 md:text-base'
+                : 'rounded-lg px-3 py-2 text-lg text-gray-700 hover:bg-gray-100 md:text-base'
             }
           >
             Deals
@@ -70,7 +70,7 @@ export const AppLayout = () => {
           <button
             type="button"
             onClick={() => setIsSidebarOpen(true)}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-2xl text-slate-700 hover:bg-slate-200"
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-3xl leading-none text-slate-700 hover:bg-slate-200"
           >
             ☰
           </button>
