@@ -38,7 +38,7 @@ export const AppLayout = () => {
                 : 'rounded-lg px-3 py-2 text-lg text-gray-700 hover:bg-gray-100 md:text-base'
             }
           >
-            Dashboard
+            Дашборд
           </NavLink>
           <NavLink
             to="/clients"
@@ -49,7 +49,7 @@ export const AppLayout = () => {
                 : 'rounded-lg px-3 py-2 text-lg text-gray-700 hover:bg-gray-100 md:text-base'
             }
           >
-            Clients
+            Клиенты
           </NavLink>
           <NavLink
             to="/deals"
@@ -60,7 +60,7 @@ export const AppLayout = () => {
                 : 'rounded-lg px-3 py-2 text-lg text-gray-700 hover:bg-gray-100 md:text-base'
             }
           >
-            Deals
+            Сделки
           </NavLink>
         </nav>
       </aside>

@@ -28,6 +28,12 @@ export const DashboardPage = () => {
     .filter((deal) => deal.stage === 'won')
     .reduce((total, deal) => total + deal.value, 0)
 
+  const currencyFormatter = new Intl.NumberFormat('ru-RU', {
+    style: 'currency',
+    currency: 'RUB',
+    maximumFractionDigits: 0,
+  })
+
   const leads = clients.filter((client) => client.status === 'lead').length
 
   const leadClients = clients.filter((client) => client.status === 'lead')
@@ -58,36 +64,30 @@ export const DashboardPage = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-slate-900">Dashboard</h1>
-        <p className="mt-1 text-sm text-slate-500">
-          Overview of your clients and deals
-        </p>
+        <h1 className="text-2xl font-semibold text-slate-900">Дашборд</h1>
+        <p className="mt-1 text-sm text-slate-500">Клиенты, сделки и метрики</p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard
-          title="Total Clients"
+          title="Всего клиентов"
           value={totalClients}
           accentClassName="bg-blue-500"
         />
 
         <StatCard
-          title="Active Deals"
+          title="Активные сделки"
           value={activeDeals}
           accentClassName="bg-amber-500"
         />
 
         <StatCard
-          title="Won Revenue"
-          value={wonRevenue}
+          title="Выручка"
+          value={currencyFormatter.format(wonRevenue)}
           accentClassName="bg-emerald-500"
         />
 
-        <StatCard
-          title="Lead Clients"
-          value={leads}
-          accentClassName="bg-violet-500"
-        />
+        <StatCard title="Лиды" value={leads} accentClassName="bg-violet-500" />
       </div>
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-[1.2fr_1fr_1fr]">
