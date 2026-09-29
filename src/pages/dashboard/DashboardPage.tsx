@@ -7,6 +7,7 @@ import { fetchDeals } from '@/entities/deal/model/dealSlice'
 
 import { StatCard } from '@/shared/ui/StatCard'
 import { Badge } from '@/shared/ui/Badge'
+import { ScrollablePanel } from '@/shared/ui/ScrollablePanel'
 
 export const DashboardPage = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -33,6 +34,14 @@ export const DashboardPage = () => {
     currency: 'RUB',
     maximumFractionDigits: 0,
   })
+
+  const dealStageLabels = {
+    lead: 'Лид',
+    proposal: 'Предложение',
+    negotiation: 'Переговоры',
+    won: 'Выиграно',
+    lost: 'Проиграно',
+  }
 
   const leads = clients.filter((client) => client.status === 'lead').length
 
@@ -93,14 +102,14 @@ export const DashboardPage = () => {
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-[1.2fr_1fr_1fr]">
         <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="text-base font-semibold text-slate-900">
-            Deals by Stage
+            Сделки по этапам
           </h2>
 
           <div className="mt-4 space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-violet-500" />
-                <span className="text-sm text-slate-600">Lead</span>
+                <span className="text-sm text-slate-600">Лид</span>
               </div>
 
               <span className="text-sm font-semibold text-slate-900">
@@ -111,7 +120,7 @@ export const DashboardPage = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-blue-500" />
-                <span className="text-sm text-slate-600">Proposal</span>
+                <span className="text-sm text-slate-600">Предложение</span>
               </div>
 
               <span className="text-sm font-semibold text-slate-900">
@@ -122,7 +131,7 @@ export const DashboardPage = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-amber-500" />
-                <span className="text-sm text-slate-600">Negotiation</span>
+                <span className="text-sm text-slate-600">Переговоры</span>
               </div>
 
               <span className="text-sm font-semibold text-slate-900">
@@ -133,7 +142,7 @@ export const DashboardPage = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-                <span className="text-sm text-slate-600">Won</span>
+                <span className="text-sm text-slate-600">Выиграно</span>
               </div>
 
               <span className="text-sm font-semibold text-slate-900">
@@ -144,7 +153,7 @@ export const DashboardPage = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-red-500" />
-                <span className="text-sm text-slate-600">Lost</span>
+                <span className="text-sm text-slate-600">Проиграно</span>
               </div>
 
               <span className="text-sm font-semibold text-slate-900">
@@ -156,11 +165,11 @@ export const DashboardPage = () => {
 
         <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="text-base font-semibold text-slate-900">
-            Latest Deals
+            Последние сделки
           </h2>
 
           {latestDeals.length === 0 ? (
-            <p className="mt-4 text-sm text-slate-500">No deals yet</p>
+            <p className="mt-4 text-sm text-slate-500">Сделок пока нет</p>
           ) : (
             <ul className="mt-4 divide-y divide-slate-100">
               {latestDeals.map((deal) => (
@@ -174,14 +183,14 @@ export const DashboardPage = () => {
                     </p>
 
                     <p className="mt-0.5 text-sm text-slate-500">
-                      {deal.value}
+                      {currencyFormatter.format(deal.value)}
                     </p>
                   </div>
 
                   <Badge
                     variant={deal.stage === 'lead' ? 'dealLead' : deal.stage}
                   >
-                    {deal.stage}
+                    {dealStageLabels[deal.stage]}
                   </Badge>
                 </li>
               ))}
@@ -190,32 +199,35 @@ export const DashboardPage = () => {
         </div>
 
         <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h2 className="text-base font-semibold text-slate-900">
-            Lead Clients
-          </h2>
+          <h2 className="text-base font-semibold text-slate-900">Лиды</h2>
 
           {leadClients.length === 0 ? (
-            <p className="mt-4 text-sm text-slate-500">No lead clients yet</p>
+            <p className="mt-4 text-sm text-slate-500">Лидов пока нет</p>
           ) : (
-            <ul className="mt-4 max-h-[320px] divide-y divide-slate-100 overflow-y-auto pr-1">
-              {leadClients.map((client) => (
-                <li
-                  key={client.id}
-                  className="flex items-center justify-between py-3 first:pt-0 last:pb-0"
-                >
-                  <div>
-                    <p className="text-sm font-medium text-slate-900">
-                      {client.name}
-                    </p>
+            <div className="mt-4">
+              <ScrollablePanel alwaysScrollable>
+                <ul className="divide-y divide-slate-100 pr-1">
+                  {leadClients.map((client) => (
+                    <li
+                      key={client.id}
+                      className="flex items-center justify-between py-3 first:pt-0 last:pb-0"
+                    >
+                      <div>
+                        <p className="text-sm font-medium text-slate-900">
+                          {client.name}
+                        </p>
 
-                    <p className="mt-0.5 text-sm text-slate-500">
-                      {client.company}
-                    </p>
-                  </div>
-                  <Badge variant="lead">Lead</Badge>
-                </li>
-              ))}
-            </ul>
+                        <p className="mt-0.5 text-sm text-slate-500">
+                          {client.company}
+                        </p>
+                      </div>
+
+                      <Badge variant="lead">Лид</Badge>
+                    </li>
+                  ))}
+                </ul>
+              </ScrollablePanel>
+            </div>
           )}
         </div>
       </div>
