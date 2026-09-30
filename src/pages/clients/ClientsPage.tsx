@@ -143,10 +143,10 @@ export const ClientsPage = () => {
     <div>
       <div className="sticky top-[52px] z-20 mb-6 bg-gray-100 pb-4 md:static md:bg-transparent md:pb-0">
         <div className="space-y-1">
-          <h1 className="text-2xl font-semibold text-slate-900">Clients</h1>
+          <h1 className="text-2xl font-semibold text-slate-900">Клиенты</h1>
 
           <p className="text-sm text-slate-500">
-            Manage your customer relationships
+            Управление клиентами и связанными сделками
           </p>
         </div>
 
@@ -154,7 +154,7 @@ export const ClientsPage = () => {
           <Input
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search clients..."
+            placeholder="Поиск клиентов..."
           />
 
           <Select
@@ -163,10 +163,10 @@ export const ClientsPage = () => {
               setStatusFilter(e.target.value as 'all' | ClientStatus)
             }
           >
-            <option value="all">All</option>
-            <option value="lead">Lead</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
+            <option value="all">Все</option>
+            <option value="lead">Лид</option>
+            <option value="active">Активные</option>
+            <option value="inactive">Неактивные</option>
           </Select>
         </div>
       </div>
@@ -175,7 +175,7 @@ export const ClientsPage = () => {
         {showBackToTop && (
           <button
             type="button"
-            aria-label="Back to top"
+            aria-label="Наверх"
             onClick={() =>
               window.scrollTo({
                 top: 0,
@@ -194,7 +194,7 @@ export const ClientsPage = () => {
             variant="primary"
             onClick={() => setIsCreateModalOpen(true)}
           >
-            Create client
+            Создать клиента
           </Button>
         </div>
       </div>
@@ -202,7 +202,7 @@ export const ClientsPage = () => {
       {fetchStatus === 'loading' && (
         <div className="mb-6 flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-500 shadow-sm">
           <div className="h-4 w-4 animate-spin rounded-full border-2 border-slate-300 border-t-blue-600" />
-          <p>Loading clients...</p>
+          <p>Загрузка клиентов...</p>
         </div>
       )}
 
@@ -213,14 +213,14 @@ export const ClientsPage = () => {
         >
           <button
             type="button"
-            aria-label="Close error"
+            aria-label="Закрыть ошибку"
             onClick={() => dispatch(clearClientError())}
             className="absolute right-3 top-3 flex h-7 w-7 cursor-pointer items-center justify-center rounded-md text-xl font-semibold leading-none text-red-500 transition hover:bg-red-100 hover:text-red-700"
           >
             ×
           </button>
 
-          <p className="font-medium text-red-800">Something went wrong</p>
+          <p className="font-medium text-red-800">Что-то пошло не так</p>
           <p className="mt-1">{error}</p>
         </div>
       )}

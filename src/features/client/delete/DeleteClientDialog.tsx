@@ -20,23 +20,23 @@ export const DeleteClientDialog = ({
       <div className="space-y-4">
         <div className="space-y-2">
           <h3 className="text-lg font-semibold text-slate-900">
-            Delete client?
+            Удалить клиента?
           </h3>
 
           <p className="text-sm leading-6 text-slate-500">
             {client?.name
-              ? `Are you sure you want to delete ${client.name}?`
-              : 'Are you sure?'}
+              ? `Вы уверены, что хотите удалить клиента ${client.name}?`
+              : 'Вы уверены?'}
           </p>
         </div>
 
         <div className="flex justify-end gap-3 pt-2">
           <Button type="button" variant="secondary" onClick={onCancel}>
-            Cancel
+            Отмена
           </Button>
 
           <Button type="button" variant="danger" onClick={onConfirm}>
-            Delete
+            Удалить
           </Button>
         </div>
       </div>

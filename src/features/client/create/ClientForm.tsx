@@ -41,7 +41,7 @@ export const ClientForm = (props: Props) => {
 
   const handleSubmit = async () => {
     if (!name.trim() || !email.includes('@')) {
-      setError('Enter valid name and email')
+      setError('Введите корректные имя и email')
       return
     }
     const formData: CreateClientDto = {
@@ -72,7 +72,7 @@ export const ClientForm = (props: Props) => {
       }
     >
       <h3 className="text-lg font-semibold text-slate-900">
-        {isEdit ? 'Edit Client' : 'Add Client'}
+        {isEdit ? 'Редактировать клиента' : 'Добавить клиента'}
       </h3>
 
       <div className="space-y-1.5">
@@ -80,14 +80,14 @@ export const ClientForm = (props: Props) => {
           htmlFor="client-name"
           className="text-sm font-medium text-slate-700"
         >
-          Name
+          Имя
         </label>
         <Input
           id="client-name"
           className="w-full"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Name"
+          placeholder="Имя"
         />
       </div>
 
@@ -112,14 +112,14 @@ export const ClientForm = (props: Props) => {
           htmlFor="client-phone"
           className="text-sm font-medium text-slate-700"
         >
-          Phone
+          Телефон
         </label>
         <Input
           id="client-phone"
           className="w-full"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          placeholder="Phone"
+          placeholder="Телефон"
         />
       </div>
 
@@ -128,14 +128,14 @@ export const ClientForm = (props: Props) => {
           htmlFor="client-company"
           className="text-sm font-medium text-slate-700"
         >
-          Company
+          Компания
         </label>
         <Input
           id="client-company"
           className="w-full"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
-          placeholder="Company"
+          placeholder="Компания"
         />
       </div>
 
@@ -144,7 +144,7 @@ export const ClientForm = (props: Props) => {
           htmlFor="client-status"
           className="text-sm font-medium text-slate-700"
         >
-          Status
+          Статус
         </label>
         <Select
           id="client-status"
@@ -152,9 +152,9 @@ export const ClientForm = (props: Props) => {
           value={status}
           onChange={(e) => setStatus(e.target.value as ClientStatus)}
         >
-          <option value="lead">Lead</option>
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
+          <option value="lead">Лид</option>
+          <option value="active">Активный</option>
+          <option value="inactive">Неактивный</option>
         </Select>
       </div>
 
@@ -162,19 +162,19 @@ export const ClientForm = (props: Props) => {
 
       {isEdit ? (
         <div className="flex flex-col gap-3">
-          <Button onClick={handleSubmit}>Save</Button>
+          <Button onClick={handleSubmit}>Сохранить</Button>
 
           <Button variant="secondary" onClick={onCancel}>
-            Cancel
+            Отмена
           </Button>
         </div>
       ) : (
         <div className="flex flex-col gap-3">
-          <Button onClick={handleSubmit}>Add client</Button>
+          <Button onClick={handleSubmit}>Добавить клиента</Button>
 
           {onCancel && (
             <Button variant="secondary" onClick={onCancel}>
-              Cancel
+              Отмена
             </Button>
           )}
         </div>

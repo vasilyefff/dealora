@@ -18,11 +18,11 @@ export const ClientList = ({
   if (clients.length === 0) {
     return (
       <EmptyState
-        title={hasClients ? 'No results found' : 'No clients yet'}
+        title={hasClients ? 'Ничего не найдено' : 'Клиентов пока нет'}
         description={
           hasClients
-            ? 'Try changing your search or filters.'
-            : 'Create your first client to get started.'
+            ? 'Попробуйте изменить поиск или фильтры.'
+            : 'Создайте первого клиента, чтобы начать работу.'
         }
       />
     )
@@ -31,11 +31,11 @@ export const ClientList = ({
   return (
     <div className="rounded-xl border border-slate-200 bg-white shadow-sm">
       <div className="hidden md:sticky md:top-0 md:z-10 md:grid md:grid-cols-[1.4fr_1.8fr_1.2fr_0.7fr_1fr] md:items-center md:gap-4 md:border-b md:border-slate-200 md:bg-white md:px-4 md:py-3 md:text-xs md:font-medium md:uppercase md:tracking-wide md:text-slate-500">
-        <div>Client</div>
-        <div>Contact</div>
-        <div>Company</div>
-        <div>Status</div>
-        <div className="text-center">Actions</div>
+        <div>Клиент</div>
+        <div>Контакты</div>
+        <div>Компания</div>
+        <div>Статус</div>
+        <div className="text-center">Действия</div>
       </div>
 
       {clients.map((client) => (
