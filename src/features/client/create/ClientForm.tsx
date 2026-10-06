@@ -41,7 +41,7 @@ export const ClientForm = (props: Props) => {
 
   const handleSubmit = async () => {
     if (!name.trim() || !email.includes('@')) {
-      setError('Введите корректные имя и email')
+      setError('Проверьте имя и адрес электронной почты')
       return
     }
     const formData: CreateClientDto = {
@@ -103,7 +103,7 @@ export const ClientForm = (props: Props) => {
           className="w-full"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
+          placeholder="name@example.com"
         />
       </div>
 

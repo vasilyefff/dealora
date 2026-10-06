@@ -8,7 +8,7 @@ export const AppLayout = () => {
       {isSidebarOpen && (
         <button
           type="button"
-          aria-label="Close sidebar"
+          aria-label="Закрыть боковое меню"
           onClick={() => setIsSidebarOpen(false)}
           className="fixed inset-0 z-40 bg-black/30 md:hidden"
         />
@@ -20,6 +20,7 @@ export const AppLayout = () => {
       >
         <button
           type="button"
+          aria-label="Закрыть боковое меню"
           onClick={() => setIsSidebarOpen(false)}
           className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg text-3xl leading-none text-slate-600 hover:bg-slate-100 md:hidden"
         >
@@ -69,6 +70,7 @@ export const AppLayout = () => {
         <div className="sticky top-0 z-30 mb-4 bg-gray-100 py-2 md:hidden">
           <button
             type="button"
+            aria-label="Открыть боковое меню"
             onClick={() => setIsSidebarOpen(true)}
             className="flex h-10 w-10 items-center justify-center rounded-lg text-3xl leading-none text-slate-700 hover:bg-slate-200"
           >
