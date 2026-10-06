@@ -18,11 +18,11 @@ export const DealList = ({
   if (deals.length === 0) {
     return (
       <EmptyState
-        title={hasDeals ? 'No results found' : 'No deals yet'}
+        title={hasDeals ? 'Ничего не найдено' : 'Сделок пока нет'}
         description={
           hasDeals
-            ? 'Try changing your stage filter.'
-            : 'Create your first deal to start tracking sales.'
+            ? 'Попробуйте изменить фильтр по этапу.'
+            : 'Создайте первую сделку, чтобы начать работу.'
         }
       />
     )

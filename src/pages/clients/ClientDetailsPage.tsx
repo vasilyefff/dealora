@@ -9,6 +9,8 @@ import { fetchDeals } from '@/entities/deal/model/dealSlice'
 import { Badge } from '@/shared/ui/Badge'
 import { EmptyState } from '@/shared/ui/EmptyState'
 
+import { dealStageLabels } from '@/entities/deal/lib/dealStageLabels'
+
 export const ClientDetailsPage = () => {
   const { clientId } = useParams()
   const dispatch = useDispatch<AppDispatch>()
@@ -27,14 +29,6 @@ export const ClientDetailsPage = () => {
     lead: 'Лид',
     active: 'Активный',
     inactive: 'Неактивный',
-  }
-
-  const dealStageLabels = {
-    lead: 'Лид',
-    proposal: 'Предложение',
-    negotiation: 'Переговоры',
-    won: 'Выиграна',
-    lost: 'Проиграна',
   }
 
   const getDealsLabel = (count: number) => {

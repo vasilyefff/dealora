@@ -59,6 +59,22 @@ export const DealsPage = () => {
     }
   }, [])
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 1024px)')
+
+    const handleChange = (event: MediaQueryListEvent) => {
+      if (event.matches) {
+        setIsCreateModalOpen(false)
+      }
+    }
+
+    mediaQuery.addEventListener('change', handleChange)
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange)
+    }
+  }, [])
+
   const handleCreateDeal = async (data: CreateDealDto) => {
     await dispatch(createDealRequest(data)).unwrap()
 
@@ -111,11 +127,11 @@ export const DealsPage = () => {
   return (
     <div>
       <div className="sticky top-[52px] z-20 mb-6 bg-gray-100 pb-4 md:static md:bg-transparent md:pb-0">
-        <h1 className="text-2xl font-semibold text-slate-900">Deals</h1>
+        <h1 className="text-2xl font-semibold text-slate-900">Сделки</h1>
 
         {fetchStatus === 'succeeded' && (
           <p className="mt-1 text-sm text-slate-500">
-            Total deals: {deals.length}
+            Всего сделок: {deals.length}
           </p>
         )}
 
@@ -124,7 +140,7 @@ export const DealsPage = () => {
             htmlFor="deal-stage-filter"
             className="text-sm font-medium text-slate-700"
           >
-            Filter by stage
+            Фильтр по этапу
           </label>
 
           <Select
@@ -134,12 +150,12 @@ export const DealsPage = () => {
               setStageFilter(event.target.value as DealStageFilter)
             }
           >
-            <option value="all">All</option>
-            <option value="lead">Lead</option>
-            <option value="negotiation">Negotiation</option>
-            <option value="proposal">Proposal</option>
-            <option value="won">Won</option>
-            <option value="lost">Lost</option>
+            <option value="all">Все</option>
+            <option value="lead">Лид</option>
+            <option value="negotiation">Переговоры</option>
+            <option value="proposal">Предложение</option>
+            <option value="won">Выиграна</option>
+            <option value="lost">Проиграна</option>
           </Select>
         </div>
       </div>
@@ -150,7 +166,7 @@ export const DealsPage = () => {
             {showBackToTop && (
               <button
                 type="button"
-                aria-label="Back to top"
+                aria-label="Наверх"
                 onClick={() =>
                   window.scrollTo({
                     top: 0,
@@ -169,7 +185,7 @@ export const DealsPage = () => {
                 variant="primary"
                 onClick={() => setIsCreateModalOpen(true)}
               >
-                Create deal
+                Создать сделку
               </Button>
             </div>
           </div>
@@ -177,7 +193,7 @@ export const DealsPage = () => {
           {fetchStatus === 'loading' && (
             <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-500 shadow-sm">
               <div className="h-4 w-4 animate-spin rounded-full border-2 border-slate-300 border-t-blue-600" />
-              <p>Loading deals...</p>
+              <p>Загрузка сделок...</p>
             </div>
           )}
 
@@ -186,7 +202,7 @@ export const DealsPage = () => {
               role="alert"
               className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700"
             >
-              <p className="font-medium text-red-800">Something went wrong</p>
+              <p className="font-medium text-red-800">Что-то пошло не так</p>
               <p className="mt-1">{error}</p>
             </div>
           )}

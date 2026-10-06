@@ -37,7 +37,7 @@ export const DealForm = ({
     e.preventDefault()
 
     if (!title.trim() || !clientId || !value.trim()) {
-      setError('Enter deal title, client and value')
+      setError('Укажите название сделки, клиента и сумму')
       return
     }
 
@@ -73,7 +73,7 @@ export const DealForm = ({
       }
     >
       <h2 className="text-lg font-semibold text-slate-900">
-        {isEdit ? 'Edit deal' : 'Create deal'}
+        {isEdit ? 'Редактировать сделку' : 'Создать сделку'}
       </h2>
 
       <div className="flex flex-col gap-1.5">
@@ -81,14 +81,14 @@ export const DealForm = ({
           htmlFor={`${formId}-title`}
           className="text-sm font-medium text-slate-700"
         >
-          Deal title
+          Название сделки
         </label>
 
         <Input
           id={`${formId}-title`}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Enter deal title"
+          placeholder="Введите название сделки"
         />
       </div>
 
@@ -97,14 +97,14 @@ export const DealForm = ({
           htmlFor={`${formId}-client`}
           className="text-sm font-medium text-slate-700"
         >
-          Client
+          Клиент
         </label>
         <Select
           id={`${formId}-client`}
           value={clientId}
           onChange={(e) => setClientId(e.target.value)}
         >
-          <option value="">Select client</option>
+          <option value="">Выберите клиента</option>
           {clients.map((client) => (
             <option key={client.id} value={client.id}>
               {client.name}
@@ -118,13 +118,13 @@ export const DealForm = ({
           htmlFor={`${formId}-value`}
           className="text-sm font-medium text-slate-700"
         >
-          Deal value
+          Сумма сделки
         </label>
         <Input
           id={`${formId}-value`}
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          placeholder="Enter deal value"
+          placeholder="Введите сумму сделки"
           type="number"
         />
       </div>
@@ -134,18 +134,18 @@ export const DealForm = ({
           htmlFor={`${formId}-stage`}
           className="text-sm font-medium text-slate-700"
         >
-          Stage
+          Этап
         </label>
         <Select
           id={`${formId}-stage`}
           value={stage}
           onChange={(e) => setStage(e.target.value as DealStage)}
         >
-          <option value="lead">Lead</option>
-          <option value="negotiation">Negotiation</option>
-          <option value="proposal">Proposal</option>
-          <option value="won">Won</option>
-          <option value="lost">Lost</option>
+          <option value="lead">Лид</option>
+          <option value="negotiation">Переговоры</option>
+          <option value="proposal">Предложение</option>
+          <option value="won">Выиграна</option>
+          <option value="lost">Проиграна</option>
         </Select>
       </div>
 
@@ -154,13 +154,13 @@ export const DealForm = ({
           htmlFor={`${formId}-comment`}
           className="text-sm font-medium text-slate-700"
         >
-          Comment
+          Комментарий
         </label>
         <textarea
           id={`${formId}-comment`}
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          placeholder="Add a short comment"
+          placeholder="Добавьте комментарий"
           className="min-h-24 resize-y rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
         />
       </div>
@@ -171,12 +171,12 @@ export const DealForm = ({
         </p>
       )}
       <Button type="submit" variant="primary">
-        {isEdit ? 'Save changes' : 'Create deal'}
+        {isEdit ? 'Сохранить изменения' : 'Создать сделку'}
       </Button>
 
       {onCancel && (
         <Button type="button" variant="secondary" onClick={onCancel}>
-          Cancel
+          Отмена
         </Button>
       )}
     </form>

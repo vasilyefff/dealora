@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import type { RootState } from '@/app/store'
 import type { Deal } from '@/entities/deal/model/types'
+import { dealStageLabels } from '@/entities/deal/lib/dealStageLabels'
 
 import { Button } from '@/shared/ui/Button'
 import { Badge } from '@/shared/ui/Badge'
@@ -20,34 +21,42 @@ export const DealCard = ({ deal, onEdit, onDelete }: DealCardProps) => {
 
       <div className="mt-2 flex items-center gap-6">
         <p className="text-sm text-slate-600">
-          Client:{' '}
+          Клиент:{' '}
           <span className="font-medium text-slate-900">
-            {client?.name || 'Client not found'}
+            {client?.name || 'Клиент не найден'}
           </span>
         </p>
 
         <p className="text-sm text-slate-600">
-          Value:{' '}
-          <span className="font-medium text-slate-900">{deal.value}</span>
+          Сумма:{' '}
+          <span className="font-medium text-slate-900">
+            {new Intl.NumberFormat('ru-RU', {
+              style: 'currency',
+              currency: 'RUB',
+              maximumFractionDigits: 0,
+            }).format(deal.value)}
+          </span>
         </p>
       </div>
 
       <div className="mt-2 flex items-center gap-2">
-        <span className="text-sm text-slate-600">Stage:</span>
+        <span className="text-sm text-slate-600">Этап:</span>
 
         <Badge variant={deal.stage === 'lead' ? 'dealLead' : deal.stage}>
-          {deal.stage}
+          {dealStageLabels[deal.stage]}
         </Badge>
       </div>
 
       <p className="mt-2 text-sm text-slate-600">
-        Comment:{' '}
-        <span className="text-slate-900">{deal.comment || 'No comment'}</span>
+        Комментарий:{' '}
+        <span className="text-slate-900">
+          {deal.comment || 'Нет комментария'}
+        </span>
       </p>
 
       <div className="mt-4 flex gap-2">
         <Button variant="secondary" type="button" onClick={() => onEdit(deal)}>
-          Edit
+          Редактировать
         </Button>
 
         <Button
@@ -55,7 +64,7 @@ export const DealCard = ({ deal, onEdit, onDelete }: DealCardProps) => {
           type="button"
           onClick={() => onDelete(deal.id)}
         >
-          Delete
+          Удалить
         </Button>
       </div>
     </div>

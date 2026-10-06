@@ -9,6 +9,8 @@ import { StatCard } from '@/shared/ui/StatCard'
 import { Badge } from '@/shared/ui/Badge'
 import { ScrollablePanel } from '@/shared/ui/ScrollablePanel'
 
+import { dealStageLabels } from '@/entities/deal/lib/dealStageLabels'
+
 export const DashboardPage = () => {
   const dispatch = useDispatch<AppDispatch>()
   const clients = useSelector((state: RootState) => state.clients.items)
@@ -34,14 +36,6 @@ export const DashboardPage = () => {
     currency: 'RUB',
     maximumFractionDigits: 0,
   })
-
-  const dealStageLabels = {
-    lead: 'Лид',
-    proposal: 'Предложение',
-    negotiation: 'Переговоры',
-    won: 'Выиграно',
-    lost: 'Проиграно',
-  }
 
   const leads = clients.filter((client) => client.status === 'lead').length
 
