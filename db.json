@@ -2,212 +2,158 @@
   "clients": [
     {
       "id": "2",
-      "name": "Maria Smith",
-      "email": "maria@example.com",
-      "phone": "+1 555 987 6543",
-      "company": "Bright Solutions",
-      "status": "lead",
-      "createdAt": "2026-07-20T10:00:00.000Z"
-    },
-    {
-      "name": "John Smith",
-      "email": "john@mail",
-      "phone": "+123",
-      "company": "Corp",
-      "status": "lead",
-      "id": "3",
-      "createdAt": "2026-09-01T05:46:58.875Z"
-    },
-    {
-      "name": "Anna Petrova",
-      "email": "anna@example.com",
-      "phone": "+1 555 111 2233",
-      "company": "Nova Digital",
+      "name": "Анна Петрова",
+      "email": "anna.petrova@example.com",
+      "phone": "+7 999 123-45-67",
+      "company": "Север Тех",
       "status": "active",
-      "id": "4",
-      "createdAt": "2026-09-16T05:00:00.000Z"
+      "createdAt": "2026-08-12T08:47:32.000Z"
     },
     {
-      "name": "Michael Brown",
-      "email": "michael@example.com",
-      "phone": "+1 555 222 3344",
-      "company": "Northstar",
+      "name": "Михаил Соколов",
+      "email": "m.sokolov@example.com",
+      "phone": "+7 999 234-56-78",
+      "company": "Вектор Софт",
       "status": "lead",
-      "id": "5",
-      "createdAt": "2026-09-16T05:10:00.000Z"
+      "id": "4",
+      "createdAt": "2026-08-19T12:23:08.000Z"
     },
     {
-      "name": "Sophie Miller",
-      "email": "sophie@example.com",
-      "phone": "+1 555 333 4455",
-      "company": "Pixel Works",
+      "name": "Елена Волкова",
+      "email": "elena.volkova@example.com",
+      "phone": "+7 999 345-67-89",
+      "company": "Альфа Диджитал",
+      "status": "active",
+      "id": "5",
+      "createdAt": "2026-08-28T06:55:41.000Z"
+    },
+    {
+      "name": "Дмитрий Козлов",
+      "email": "d.kozlov@example.com",
+      "phone": "+7 999 456-78-90",
+      "company": "Нова Групп",
       "status": "inactive",
       "id": "6",
-      "createdAt": "2026-09-16T05:20:00.000Z"
+      "createdAt": "2026-09-03T14:12:19.000Z"
     },
     {
-      "name": "Daniel Wilson",
-      "email": "daniel@example.com",
-      "phone": "+1 555 444 5566",
-      "company": "Vertex Labs",
+      "name": "Мария Орлова",
+      "email": "maria.orlova@example.com",
+      "phone": "+7 999 567-89-01",
+      "company": "Сфера Медиа",
       "status": "active",
       "id": "7",
-      "createdAt": "2026-09-16T05:30:00.000Z"
+      "createdAt": "2026-09-09T09:36:54.000Z"
     },
     {
-      "name": "Emma Davis",
-      "email": "emma@example.com",
-      "phone": "+1 555 555 6677",
-      "company": "Cloudline",
+      "name": "Алексей Морозов",
+      "email": "a.morozov@example.com",
+      "phone": "+7 999 678-90-12",
+      "company": "Призма Финанс",
       "status": "lead",
       "id": "8",
-      "createdAt": "2026-09-16T05:40:00.000Z"
+      "createdAt": "2026-09-17T11:08:27.000Z"
     },
     {
-      "name": "Robert Taylor",
-      "email": "robert@example.com",
-      "phone": "+1 555 666 7788",
-      "company": "Bright Labs",
+      "name": "Ольга Лебедева",
+      "email": "olga.lebedeva@example.com",
+      "phone": "+7 999 789-01-23",
+      "company": "Город Онлайн",
       "status": "active",
-      "id": "9",
-      "createdAt": "2026-09-16T05:50:00.000Z"
-    },
-    {
-      "name": "Olivia Anderson",
-      "email": "olivia@example.com",
-      "phone": "+1 555 777 8899",
-      "company": "Orbit Systems",
-      "status": "inactive",
-      "id": "10",
-      "createdAt": "2026-09-16T06:00:00.000Z"
-    },
-    {
-      "name": "James Martin",
-      "email": "james@example.com",
-      "phone": "+1 555 888 9900",
-      "company": "Core Studio",
-      "status": "lead",
       "id": "11",
-      "createdAt": "2026-09-16T06:10:00.000Z"
-    },
-    {
-      "name": "NewTestClient",
-      "email": "@TEST",
-      "phone": "+989898",
-      "company": "Company",
-      "status": "lead",
-      "id": "12",
-      "createdAt": "2026-09-23T17:54:27.727Z"
-    },
-    {
-      "name": "TestNewClient",
-      "email": "@test2",
-      "phone": "+0000000",
-      "company": "QWE",
-      "status": "lead",
-      "id": "13",
-      "createdAt": "2026-09-23T18:15:49.484Z"
+      "createdAt": "2026-09-25T07:44:13.000Z"
     }
   ],
   "deals": [
     {
-      "title": "Test deal",
+      "title": "Редизайн корпоративного сайта",
       "clientId": "2",
       "value": 350000,
-      "stage": "lead",
-      "comment": "Test",
-      "id": "1",
-      "createdAt": "2026-09-15T05:10:07.537Z"
-    },
-    {
-      "title": "Website redesign",
-      "clientId": "11",
-      "value": 180000,
       "stage": "proposal",
-      "comment": "Waiting for client feedback",
+      "comment": "Подготовлено коммерческое предложение",
+      "id": "1",
+      "createdAt": "2026-09-18T10:26:14.000Z"
+    },
+    {
+      "title": "Внедрение CRM",
+      "clientId": "4",
+      "value": 480000,
+      "stage": "lead",
+      "comment": "Назначена встреча с руководителем",
       "id": "2",
-      "createdAt": "2026-09-15T06:00:00.000Z"
+      "createdAt": "2026-09-21T07:48:33.000Z"
     },
     {
-      "title": "CRM integration",
-      "clientId": "2",
-      "value": 420000,
+      "title": "Разработка личного кабинета",
+      "clientId": "5",
+      "value": 620000,
       "stage": "negotiation",
-      "comment": "Discussing final scope",
+      "comment": "Обсуждаем финальный объём работ",
       "id": "3",
-      "createdAt": "2026-09-15T07:00:00.000Z"
+      "createdAt": "2026-09-24T13:17:05.000Z"
     },
     {
-      "title": "Support contract",
-      "clientId": "11",
-      "value": 95000,
+      "title": "Поддержка интернет-магазина",
+      "clientId": "7",
+      "value": 240000,
       "stage": "won",
-      "comment": "Contract signed",
+      "comment": "Подписан договор",
       "id": "4",
-      "createdAt": "2026-09-15T08:00:00.000Z"
+      "createdAt": "2026-09-27T09:52:46.000Z"
     },
     {
-      "title": "Mobile application",
-      "clientId": "2",
-      "value": 560000,
-      "stage": "lost",
-      "comment": "Client chose another vendor",
-      "id": "5",
-      "createdAt": "2026-09-15T09:00:00.000Z"
-    },
-    {
-      "title": "Analytics dashboard",
+      "title": "Интеграция аналитики",
       "clientId": "11",
       "value": 270000,
-      "stage": "lead",
-      "comment": "Initial discussion",
-      "id": "6",
-      "createdAt": "2026-09-15T10:00:00.000Z"
-    },
-    {
-      "title": "Landing page",
-      "clientId": "2",
-      "value": 120000,
       "stage": "proposal",
-      "comment": "Proposal sent",
-      "id": "7",
-      "createdAt": "2026-09-15T11:00:00.000Z"
+      "comment": "Ожидаем обратную связь от клиента",
+      "id": "5",
+      "createdAt": "2026-09-29T15:03:28.000Z"
     },
     {
-      "title": "Internal portal",
-      "clientId": "11",
-      "value": 310000,
-      "stage": "negotiation",
-      "comment": "Budget discussion",
-      "id": "8",
-      "createdAt": "2026-09-15T12:00:00.000Z"
-    },
-    {
-      "title": "SEO package",
-      "clientId": "2",
-      "value": 80000,
-      "stage": "won",
-      "comment": "Approved",
-      "id": "9",
-      "createdAt": "2026-09-15T13:00:00.000Z"
-    },
-    {
-      "title": "E-commerce update",
-      "clientId": "11",
-      "value": 225000,
+      "title": "Мобильное приложение",
+      "clientId": "6",
+      "value": 780000,
       "stage": "lost",
-      "comment": "Project postponed",
-      "id": "10",
-      "createdAt": "2026-09-15T14:00:00.000Z"
+      "comment": "Клиент выбрал другого подрядчика",
+      "id": "6",
+      "createdAt": "2026-10-01T08:41:57.000Z"
     },
     {
-      "title": "TestNewDeal",
-      "clientId": "4",
-      "value": 765000,
+      "title": "SEO-продвижение",
+      "clientId": "2",
+      "value": 190000,
+      "stage": "won",
+      "comment": "Работы завершены и приняты клиентом",
+      "id": "7",
+      "createdAt": "2026-10-02T12:14:39.000Z"
+    },
+    {
+      "title": "Корпоративный портал",
+      "clientId": "5",
+      "value": 540000,
+      "stage": "negotiation",
+      "comment": "Согласование финального бюджета",
+      "id": "8",
+      "createdAt": "2026-10-04T06:58:12.000Z"
+    },
+    {
+      "title": "Автоматизация отдела продаж",
+      "clientId": "8",
+      "value": 430000,
       "stage": "lead",
-      "comment": "",
-      "id": "11",
-      "createdAt": "2026-09-23T17:29:35.135Z"
+      "comment": "Проведён первичный брифинг",
+      "id": "9",
+      "createdAt": "2026-10-05T14:32:51.000Z"
+    },
+    {
+      "title": "Обновление сайта",
+      "clientId": "4",
+      "value": 210000,
+      "stage": "lost",
+      "comment": "Проект отложен до следующего квартала",
+      "id": "10",
+      "createdAt": "2026-10-06T09:11:24.000Z"
     }
   ]
 }
