@@ -1,73 +1,243 @@
-# React + TypeScript + Vite
+# Dealora
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dealora — учебная CRM для управления клиентами и сделками.
 
-Currently, two official plugins are available:
+Приложение позволяет вести клиентскую базу, отслеживать сделки по этапам, просматривать основные показатели и работать с данными через русскоязычный адаптивный интерфейс.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🎯 Цель проекта
 
-## React Compiler
+Dealora создана как учебный CRM-проект для практики React, TypeScript, Redux Toolkit, взаимодействия с API и разработки бизнес-интерфейсов.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Проект демонстрирует организацию клиентской части приложения, управление состоянием, выполнение асинхронных запросов и работу с простым серверным API.
 
-## Expanding the ESLint configuration
+## 🚀 Возможности
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- дашборд с количеством клиентов, активных сделок, лидов и суммой выигранных сделок;
+- статистика сделок по этапам;
+- отображение последних сделок;
+- просмотр списка клиентов;
+- поиск клиентов по имени, электронной почте, телефону и компании;
+- фильтрация клиентов по статусу;
+- создание, редактирование и удаление клиентов;
+- редактирование клиента через модальное окно;
+- запрет удаления клиента при наличии связанных сделок;
+- страница с информацией о клиенте и его сделками;
+- просмотр списка сделок;
+- фильтрация сделок по этапу;
+- создание, редактирование и удаление сделок;
+- создание сделки через модальное окно на мобильных устройствах;
+- состояния загрузки, ошибки и отсутствия данных на основных экранах;
+- адаптивный интерфейс для компьютеров и мобильных устройств;
+- мобильное боковое меню;
+- русскоязычный интерфейс;
+- форматирование дат для локали `ru-RU`;
+- форматирование денежных сумм в рублях;
+- демонстрационные данные в `db.json`.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Стек
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Клиентская часть
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- React
+- TypeScript
+- Vite
+- React Router
+- Redux Toolkit
+- React Redux
+- Axios
+- Tailwind CSS
+
+### Серверная часть
+
+- Node.js
+- Express
+- `db.json`
+- файловое сохранение данных через Node.js `fs`
+
+### Инструменты
+
+- npm
+- ESLint
+- Prettier
+- tsx
+
+## 🧩 Архитектура
+
+Клиентская часть организована как `layered frontend structure` с разделением кода по назначению:
+
+- `app` — конфигурация приложения, маршрутизация, Redux store и основной layout;
+- `pages` — страницы дашборда, клиентов, деталей клиента и сделок;
+- `entities` — модели, типы, Redux slices и UI-компоненты основных сущностей;
+- `features` — сценарии создания, редактирования и удаления клиентов и сделок;
+- `shared` — общий API-слой и переиспользуемые UI-компоненты.
+
+Серверная часть расположена отдельно в каталоге `server` и предоставляет HTTP API на Express.
+
+Основной поток данных:
+
+```text
+React
+  → Redux Toolkit async thunks
+  → API-слой
+  → Axios
+  → Express
+  → db.json
+  → ответ
+  → Redux store
+  → UI
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Компоненты React отправляют действия в Redux store. Асинхронные операции выполняются через Redux Toolkit async thunks, которые обращаются к API-слою.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Axios отправляет запросы на Express-сервер. Сервер читает и изменяет данные клиентов и сделок, а затем сохраняет изменения в `db.json`. Полученный ответ обновляет Redux store и пользовательский интерфейс.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📦 Основные сущности
+
+### Клиент
+
+Клиент содержит:
+
+- идентификатор;
+- имя;
+- электронную почту;
+- телефон;
+- компанию;
+- статус;
+- дату создания.
+
+Доступные статусы:
+
+- `lead` — лид;
+- `active` — активный;
+- `inactive` — неактивный.
+
+### Сделка
+
+Сделка содержит:
+
+- идентификатор;
+- название;
+- идентификатор клиента;
+- сумму;
+- этап;
+- комментарий;
+- дату создания.
+
+Связь между сделкой и клиентом хранится в поле `clientId`.
+
+Доступные этапы:
+
+- `lead` — лид;
+- `proposal` — предложение;
+- `negotiation` — переговоры;
+- `won` — выиграна;
+- `lost` — проиграна.
+
+## 📁 Структура проекта
+
+```text
+src/
+├── app/        # конфигурация приложения, маршруты, store и layout
+├── pages/      # страницы приложения
+├── entities/   # модели и представление клиентов и сделок
+├── features/   # создание, редактирование и удаление сущностей
+└── shared/     # API-слой и общие UI-компоненты
+
+server/
+└── server.ts   # Express API
+
+db.json         # демонстрационные данные и файловое хранилище
 ```
+
+## ▶️ Запуск локально
+
+Для запуска необходимы Node.js и npm.
+
+Клонируйте репозиторий и установите зависимости:
+
+```bash
+git clone https://github.com/vasilyefff/dealora.git
+cd dealora
+npm install
+```
+
+Клиентская и серверная части запускаются раздельно.
+
+Запустите серверную часть в первом терминале:
+
+```bash
+npm run server
+```
+
+По умолчанию Express API будет доступен по адресу:
+
+```text
+http://localhost:3001
+```
+
+Запустите клиентскую часть во втором терминале:
+
+```bash
+npm run dev
+```
+
+По умолчанию приложение будет доступно по адресу:
+
+```text
+http://localhost:5173
+```
+
+Для работы с данными оба процесса должны быть запущены одновременно.
+
+## ✅ Проверка проекта
+
+Проверка ESLint:
+
+```bash
+npm run lint
+```
+
+Проверка TypeScript и сборка проекта:
+
+```bash
+npm run build
+```
+
+## 💡 Особенности реализации
+
+- управление состоянием через Redux Toolkit;
+- асинхронные запросы через async thunks;
+- отдельный Axios API-слой для клиентов и сделок;
+- Express API для операций с клиентами и сделками;
+- файловое сохранение изменений в `db.json`;
+- проверка связанных сделок перед удалением клиента;
+- переиспользуемые UI-компоненты;
+- компонент `ScrollablePanel` для прокручиваемых списков;
+- адаптивные представления списков, форм и навигации;
+- состояния загрузки, ошибки и отсутствия данных;
+- локализованные названия статусов и этапов;
+- форматирование дат и денежных сумм для локали `ru-RU`.
+
+## 📸 Скриншоты
+
+В этот раздел будут добавлены:
+
+1. дашборд с KPI и статистикой;
+2. список клиентов с поиском и фильтрацией;
+3. список сделок с фильтрацией по этапу;
+4. мобильное представление с боковым меню или формой создания сделки.
+
+## 🔮 Возможные улучшения
+
+- пагинация списков клиентов и сделок;
+- аутентификация и авторизация;
+- замена файлового хранилища на базу данных;
+- конфигурация адреса API через переменные окружения;
+- развёртывание клиентской и серверной частей;
+- настройка CI/CD.
+
+## 👤 Автор
+
+Кирилл Васильев
+
+- GitHub: https://github.com/vasilyefff
