@@ -119,7 +119,7 @@ app.delete('/clients/:id', (request, response) => {
 
   if (hasRelatedDeals) {
     return response.status(409).json({
-      message: 'Client cannot be deleted because it has related deals',
+      message: 'Нельзя удалить клиента, пока у него есть связанные сделки',
     })
   }
 
