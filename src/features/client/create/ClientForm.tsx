@@ -52,7 +52,17 @@ export const ClientForm = (props: Props) => {
       status,
     }
 
-    await onSubmit(formData)
+    try {
+      await onSubmit(formData)
+      setError('')
+    } catch (submitError) {
+      setError(
+        typeof submitError === 'string'
+          ? submitError
+          : 'Не удалось сохранить клиента',
+      )
+      return
+    }
 
     if (!isEdit) {
       setName('')

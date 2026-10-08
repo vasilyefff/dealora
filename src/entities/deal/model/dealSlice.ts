@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { Deal, CreateDealDto, UpdateDealDto } from './types'
 import {
@@ -14,10 +16,26 @@ export const fetchDeals = createAsyncThunk<Deal[]>(
   },
 )
 
-export const createDealRequest = createAsyncThunk<Deal, CreateDealDto>(
+export const createDealRequest = createAsyncThunk<
+  Deal,
+  CreateDealDto,
+  { rejectValue: string }
+>(
   'deals/createDeal',
-  async (dealData) => {
-    return createDeal(dealData)
+  async (dealData, { rejectWithValue }) => {
+    try {
+      return await createDeal(dealData)
+    } catch (error) {
+      if (axios.isAxiosError<{ message: string }>(error)) {
+        const message = error.response?.data.message
+
+        if (message) {
+          return rejectWithValue(message)
+        }
+      }
+
+      throw error
+    }
   },
 )
 
@@ -77,7 +95,8 @@ const dealsSlice = createSlice({
       state.items.push(action.payload)
     })
     builder.addCase(createDealRequest.rejected, (state, action) => {
-      state.error = action.error.message ?? 'Failed to create deal'
+      state.error =
+        action.payload ?? action.error.message ?? 'Failed to create deal'
     })
 
     builder.addCase(updateDealRequest.pending, (state) => {

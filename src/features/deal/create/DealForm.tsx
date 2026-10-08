@@ -58,7 +58,12 @@ export const DealForm = ({
       setValue('')
       setStage('lead')
       setComment('')
-    } catch {
+    } catch (submitError) {
+      setError(
+        typeof submitError === 'string'
+          ? submitError
+          : 'Не удалось сохранить сделку',
+      )
       return
     }
   }

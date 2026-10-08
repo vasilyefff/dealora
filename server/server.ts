@@ -7,6 +7,8 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 const PORT = 3001
+const MAX_CLIENTS = 200
+const MAX_DEALS = 200
 
 const dbFile = fs.readFileSync('db.json', 'utf-8')
 const db = JSON.parse(dbFile)
@@ -35,6 +37,12 @@ app.get('/clients/:id', (request, response) => {
 })
 
 app.post('/clients', (request, response) => {
+  if (clients.length >= MAX_CLIENTS) {
+    return response.status(409).json({
+      message: 'Достигнут лимит клиентов в демо-версии',
+    })
+  }
+
   const nextId = String(
     Math.max(0, ...clients.map((client) => Number(client.id))) + 1,
   )
@@ -138,6 +146,12 @@ app.get('/deals/:id', (request, response) => {
 })
 
 app.post('/deals', (request, response) => {
+  if (deals.length >= MAX_DEALS) {
+    return response.status(409).json({
+      message: 'Достигнут лимит сделок в демо-версии',
+    })
+  }
+
   const nextId = String(
     Math.max(0, ...deals.map((deal) => Number(deal.id))) + 1,
   )

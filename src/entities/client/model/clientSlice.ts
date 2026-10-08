@@ -18,10 +18,26 @@ export const fetchClients = createAsyncThunk<Client[]>(
   },
 )
 
-export const createClient = createAsyncThunk<Client, CreateClientDto>(
+export const createClient = createAsyncThunk<
+  Client,
+  CreateClientDto,
+  { rejectValue: string }
+>(
   'clients/createClient',
-  async (clientData) => {
-    return createClientApi(clientData)
+  async (clientData, { rejectWithValue }) => {
+    try {
+      return await createClientApi(clientData)
+    } catch (error) {
+      if (axios.isAxiosError<{ message: string }>(error)) {
+        const message = error.response?.data.message
+
+        if (message) {
+          return rejectWithValue(message)
+        }
+      }
+
+      throw error
+    }
   },
 )
 
@@ -96,7 +112,8 @@ const clientsSlice = createSlice({
       state.items.push(action.payload)
     })
     builder.addCase(createClient.rejected, (state, action) => {
-      state.error = action.error.message ?? 'Failed to create client'
+      state.error =
+        action.payload ?? action.error.message ?? 'Failed to create client'
     })
 
     builder.addCase(updateClientRequest.pending, (state) => {
