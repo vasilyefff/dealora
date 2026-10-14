@@ -39,6 +39,8 @@ export const DealsPage = () => {
   const [stageFilter, setStageFilter] = useState<DealStageFilter>('all')
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const [createSuccess, setCreateSuccess] = useState<string | null>(null)
+  const [isSuccessVisible, setIsSuccessVisible] = useState(false)
 
   const dispatch = useDispatch<AppDispatch>()
 
@@ -75,8 +77,27 @@ export const DealsPage = () => {
     }
   }, [])
 
+  useEffect(() => {
+    if (!createSuccess) return
+
+    const fadeTimeoutId = window.setTimeout(() => {
+      setIsSuccessVisible(false)
+    }, 2500)
+    const removeTimeoutId = window.setTimeout(() => {
+      setCreateSuccess(null)
+    }, 3000)
+
+    return () => {
+      window.clearTimeout(fadeTimeoutId)
+      window.clearTimeout(removeTimeoutId)
+    }
+  }, [createSuccess])
+
   const handleCreateDeal = async (data: CreateDealDto) => {
-    await dispatch(createDealRequest(data)).unwrap()
+    setCreateSuccess(null)
+    const createdDeal = await dispatch(createDealRequest(data)).unwrap()
+    setCreateSuccess(`Сделка «${createdDeal.title}» успешно добавлена`)
+    setIsSuccessVisible(true)
 
     setIsCreateModalOpen(false)
   }
@@ -159,6 +180,18 @@ export const DealsPage = () => {
           </Select>
         </div>
       </div>
+
+      {createSuccess && (
+        <div
+          role="status"
+          aria-live="polite"
+          className={`mb-6 max-w-xl rounded-xl border border-green-200 bg-green-50 p-4 text-sm font-medium text-green-700 shadow-sm transition-opacity duration-500 ${
+            isSuccessVisible ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          {createSuccess}
+        </div>
+      )}
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start">
         <div className="space-y-6">
