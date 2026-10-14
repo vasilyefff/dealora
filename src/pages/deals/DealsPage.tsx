@@ -152,7 +152,7 @@ export const DealsPage = () => {
 
         {fetchStatus === 'succeeded' && (
           <p className="mt-1 text-sm text-slate-500">
-            Всего сделок: {deals.length}
+            Всего сделок: {filteredDeals.length}
           </p>
         )}
 

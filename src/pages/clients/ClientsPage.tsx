@@ -190,6 +190,12 @@ export const ClientsPage = () => {
             <option value="inactive">Неактивные</option>
           </Select>
         </div>
+
+        {fetchStatus === 'succeeded' && (
+          <p className="mt-3 text-sm text-slate-500">
+            Всего клиентов: {filteredClients.length}
+          </p>
+        )}
       </div>
 
       {createSuccess && (
