@@ -40,6 +40,8 @@ export const ClientsPage = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const [createSuccess, setCreateSuccess] = useState<string | null>(null)
+  const [isSuccessVisible, setIsSuccessVisible] = useState(false)
 
   useEffect(() => {
     dispatch(fetchClients())
@@ -73,8 +75,27 @@ export const ClientsPage = () => {
     }
   }, [])
 
+  useEffect(() => {
+    if (!createSuccess) return
+
+    const fadeTimeoutId = window.setTimeout(() => {
+      setIsSuccessVisible(false)
+    }, 2500)
+    const removeTimeoutId = window.setTimeout(() => {
+      setCreateSuccess(null)
+    }, 3000)
+
+    return () => {
+      window.clearTimeout(fadeTimeoutId)
+      window.clearTimeout(removeTimeoutId)
+    }
+  }, [createSuccess])
+
   const handleCreate = async (data: CreateClientDto) => {
-    await dispatch(createClient(data)).unwrap()
+    setCreateSuccess(null)
+    const createdClient = await dispatch(createClient(data)).unwrap()
+    setCreateSuccess(`Клиент «${createdClient.name}» успешно добавлен`)
+    setIsSuccessVisible(true)
     setIsCreateModalOpen(false)
   }
 
@@ -170,6 +191,18 @@ export const ClientsPage = () => {
           </Select>
         </div>
       </div>
+
+      {createSuccess && (
+        <div
+          role="status"
+          aria-live="polite"
+          className={`mb-6 max-w-xl rounded-xl border border-green-200 bg-green-50 p-4 text-sm font-medium text-green-700 shadow-sm transition-opacity duration-500 ${
+            isSuccessVisible ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          {createSuccess}
+        </div>
+      )}
 
       <div className="fixed right-4 bottom-8 z-40 flex flex-col items-end gap-10 xl:hidden">
         {showBackToTop && (
